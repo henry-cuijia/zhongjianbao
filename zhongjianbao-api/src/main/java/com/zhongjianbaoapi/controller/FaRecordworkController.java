@@ -9,6 +9,7 @@ import com.zhongjianbaoapi.service.FaRecordworkService;
 import com.zhongjianbaoapi.utils.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,10 +46,10 @@ public class FaRecordworkController {
     // 根据条件查询
     @ApiOperation(value = "根据条件查询信息")
     @GetMapping("/getObj")
-    public R getObj(@RequestParam String mobile) {
+    public R getObj(@RequestParam Integer objUid) {
         try{
             QueryWrapper<FaRecordwork> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("mobile",mobile);
+            queryWrapper.eq("objUid",objUid);
             return R.ok(200,"查询成功",faRecordworkService.getOne(queryWrapper));
         }catch (Exception e) {
             e.printStackTrace();
